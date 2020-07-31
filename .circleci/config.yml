@@ -2,13 +2,13 @@
  jobs:
    one:
      docker:
-       - image: alpine
+       - image: circleci/php:7.4.6
      steps:
        - checkout
        - run: echo "A first hello"
    two:
      docker:
-       - image: circleci/ruby:2.4.1
+       - image: circleci/php:7.4.6
      steps:
        - checkout
        - run: echo "A more familiar hi"
