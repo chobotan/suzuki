@@ -1,12 +1,12 @@
  version: 2 
  jobs:
-   one:
+   build:
      docker:
        - image: circleci/php:7.4.6
      steps:
        - checkout
        - run: echo "A first hello"
-   two:
+   deploy:
      machine:
        - image: circleci/classic:edge
      steps:
@@ -15,12 +15,12 @@
        - run: ssh ${USER_NAME}@${HOST_NAME} 'cd ~/suzuki/ && git pull'
  workflows:
    version: 2
-   one_and_two:
+   build_and_deploy:
      jobs:
-       - one
-       - two:
+       - build
+       - deploy:
            requires:
-             - one
+             - build
            filters:
              branches:
                only:
